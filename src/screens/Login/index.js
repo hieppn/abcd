@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { StyleSheet, Text, View,TouchableOpacity,ScrollView } from 'react-native';
+import { StyleSheet, Text, View,TouchableOpacity,ScrollView,ActivityIndicator } from 'react-native';
 import { NavigationUtils } from '../../navigation';
 import visibility from '../../assets/Images/visibility.png';
 import witness from '../../assets/Images/witness.png';
@@ -7,8 +7,9 @@ import ItemInput from '../../components/register/InputItem';
 import PassWordInput from '../../components/register/PasswordInput';
 import {useDispatch, useSelector} from 'react-redux';
 import   LoginTypes from '../../redux/LoginRedux/actions';
-
-const Login = () => {
+import SignUp from './SignUp';
+import { Navigation } from 'react-native-navigation';
+const Login = (props) => {
   const [] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -21,17 +22,20 @@ const Login = () => {
   const isError = useSelector((state) => state.login.errorLogin);
   const onLogin = ()=>{
     //console.log("Hello");
-    dispatch(LoginTypes.userLogin(dataLogin,success,failure));
+    dispatch(LoginTypes.userLogin(dataLogin));
   };
-  const success = (res) => {
-    NavigationUtils.startMainContent()
-  }
-
-  const failure = (error) => {
-    console.log(error);
-  }
-  onHandleSignUp= ( )=>{
-    console.log("Register");
+  const onHandleSignUp= ()=>{
+    Navigation.push(props.componentId, {
+      component: {
+        name: 'SignUp',
+        options: {
+          topBar: {
+            visible: false,
+            height: 0,
+          },
+        },
+      },
+    });
   };
   return (
     <ScrollView style={styles.container}>
@@ -45,6 +49,8 @@ const Login = () => {
         imageOpen={witness}
         onChangePass={(val) => setPassword(val)}
       />
+      { isLoading &&  <ActivityIndicator size="large" color="#00ff00" />}
+     { isError && <Text>{isError}</Text>}
       <View style={styles.layoutButton}>
         <TouchableOpacity style={styles.loginButton} onPress= {onLogin}>
           <Text style={styles.textSignUp}>Đăng nhập</Text>
@@ -53,6 +59,7 @@ const Login = () => {
           <Text>Đăng ký</Text>
         </TouchableOpacity>
       </View>
+      
       <Text style={styles.policy}>
         Bằng việc xác nhận tạo tài khoản, bạn đã đồng ý với{' '}
         <Text style={styles.policyHighLight}>điều khoản quy định</Text> của chúng tôi
@@ -117,3 +124,4 @@ const styles = StyleSheet.create({
   },
 });
 export default Login;
+//Navigation.registerComponent('SignUp', () => SignUp);

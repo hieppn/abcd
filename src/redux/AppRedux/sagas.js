@@ -9,10 +9,8 @@ export function* startupSaga() {
     // set data to reducer
 
 
-    // const { token } = yield select((state) => state.login);
-
-    // http.setAuthorizationHeader(token);
-
+    const { token } = yield select((state) => state.login);
+    http.setAuthorizationHeader(token);
     if (token) {
       NavigationUtils.startMainContent();
     } else {
