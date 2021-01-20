@@ -19,7 +19,7 @@ const Login = (props) => {
   const isLoading = useSelector((state) => state.login.loadingLogin);
   const isError = useSelector((state) => state.login.errorLogin);
   const onLogin = ()=>{
-    //console.log("Hello");
+    console.log("Hello");
     dispatch(LoginTypes.userLogin(dataLogin));
   };
   const onHandleSignUp= ()=>{
