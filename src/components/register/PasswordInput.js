@@ -25,16 +25,20 @@ const PassWordInput = (props) => {
 const styles = StyleSheet.create({
   layoutInput: {
     flex: 1,
+    marginBottom: 5,
+    marginTop:10,
   },
   titleInput: {
     color: 'gray',
     fontSize: 15,
-    marginBottom: 5,
+    marginTop:15,
   },
   textInput: {
     height: 45,
     borderColor: '#dddddd',
     borderWidth: 1,
+    paddingBottom: 20,
+
   },
   closeImage: {
     height: 20,
@@ -44,7 +48,10 @@ const styles = StyleSheet.create({
   showPassword: {
     position: 'absolute',
     right: 10,
-    top: 38,
+    top: 50,
+    justifyContent: 'center',
+    alignItems:'center',
+    alignSelf:'center'
   },
 });
 export default PassWordInput;

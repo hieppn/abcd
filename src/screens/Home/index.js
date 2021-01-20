@@ -11,6 +11,7 @@ const Home = (props) => {
     dispatch(LoginTypes.userLogout());
   };
   const onHandleProfile=()=>{
+    
     Navigation.push(props.componentId, {
       component: {
         name: 'Profile',
@@ -22,6 +23,7 @@ const Home = (props) => {
         },
       },
     });
+    dispatch(LoginTypes.userGetInformation());
   };
   return (
     <View style={styles.container}>

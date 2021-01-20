@@ -24,7 +24,7 @@ const SignUp = (props) => {
   const dispatch = useDispatch();
   
   const isLoading = useSelector((state) => state.login.loadingLogin);
-  const isError = useSelector((state) => state.login.errorLogin);
+  const isError = useSelector((state) => state.login.errorSignup);
   const onLogin = () => {
     Navigation.push(props.componentId, {
       component: {
@@ -49,6 +49,11 @@ const SignUp = (props) => {
       birthDay: birthday
     };
   dispatch(LoginTypes.userSignup(data));
+  const dataLogin={
+    email: email,
+    password: pass,
+  };
+  dispatch(LoginTypes.userLogin(dataLogin));
   }
     else{
       alert('Vui lòng xác nhận mật khẩu.');
